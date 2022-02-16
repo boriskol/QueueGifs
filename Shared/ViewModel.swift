@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 import SwiftUI
 /*
 public struct Queue<T> {
@@ -60,7 +59,7 @@ class MainViewModel: ObservableObject {
    @Published private(set) var gifs = [GifCollectionViewCellViewModel]()
    
    // MARK:  Initializer Dependency injestion
-   var appiCall: ApiLoader?
+   let appiCall: ApiLoader?
    
    init(appiCall: ApiLoader = ApiLoader()){
       self.appiCall = appiCall
