@@ -25,27 +25,19 @@ struct ContentView: View {
             
             VStack(alignment: .leading, spacing: 0, content: {
                // MARK: Stack
-               Section(header: VStack(alignment: .leading, spacing: 8){
-                  HStack(){
-                     Spacer()
-                     Button(action: {
-                        self.gifs.dequeue()
-                     }) {
-                        HStack {
-                           Image(systemName: "minus")
-                           Text("dequeue")
-                        }.padding(10.0)
-                           .overlay(RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 2.0))
-                     }
-                  }
-                  
-               }, content: {
-                  VStack{
-                     if self.gifs.giffront != nil{
-                        GifCell(gif: self.gifs.giffront!, geometry: geometry)
-                     }
-                  }.listStyle(.plain)
-               })
+               
+               HStack(){
+                  Spacer()
+                  Button(action: {
+                     self.gifs.dequeue()
+                  }) {
+                     HStack {
+                        Image(systemName: "minus")
+                        Text("dequeue")
+                     }.padding(10.0)
+                        .overlay(RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 2.0))
+                  }.padding(.trailing,10)
+               }
                
                Section(header: VStack(alignment: .leading, spacing: 8){
                   Text("Gifs Stack").font(.body).foregroundColor(.purple).fontWeight(.bold).padding(.leading)

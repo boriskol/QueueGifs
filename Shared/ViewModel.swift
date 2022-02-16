@@ -55,7 +55,6 @@ public struct Queue<T> {
 class MainViewModel: ObservableObject {
    
    @Published private(set) var gifsStack = [GifCollectionViewCellViewModel]()
-   @Published private(set) var giffront: GifCollectionViewCellViewModel?
    private var head = 0
    
    @Published private(set) var gifs = [GifCollectionViewCellViewModel]()
