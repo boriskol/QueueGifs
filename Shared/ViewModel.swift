@@ -78,16 +78,15 @@ class MainViewModel: ObservableObject {
     }
     public func dequeue() -> GifCollectionViewCellViewModel?{
         
+        guard !gifsStack.isEmpty else { return nil}
+        guard head <= gifsStack.count else { return nil }
         let element1 = gifsStack[head]
-        
-        guard head < gifsStack.count else { return nil }
         
         gifsStack[head] = GifCollectionViewCellViewModel(id: nil, title: nil, rating: nil, Image: nil, url: nil)
         head += 1
         
         //let percentage = Double(head)/Double(gifsStack.count)
         //if gifsStack.count > 50 && percentage > 0.25 {
-       
         if head > 2 {
             gifsStack.removeFirst(head)
             head = 0
@@ -95,14 +94,7 @@ class MainViewModel: ObservableObject {
        
         return element1
     }
-    public var front1: GifCollectionViewCellViewModel? {
-        if isEmpty {
-              return nil
-        } else {
-            return gifsStack[head]
-        }
-       
-    }
+   
     
     @MainActor func loadGift() async {
         

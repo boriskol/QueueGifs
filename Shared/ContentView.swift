@@ -26,10 +26,10 @@ struct ContentView: View {
                     VStack(alignment: .leading, spacing: 0, content: {
                         // MARK: Stack
                         
-                        if let front = self.gifs.front1{
+                        //if let front = self.gifs.front1{
                             Section(header: VStack(alignment: .leading, spacing: 8){
                                 HStack(){
-                                    Text("Gif Stack Top").font(.body).foregroundColor(.purple).fontWeight(.bold).padding(.leading)
+                                    
                                     Spacer()
                                     Button(action: {
                                         self.gifs.dequeue()
@@ -44,10 +44,12 @@ struct ContentView: View {
                                
                             }, content: {
                                 VStack{
-                                    GifCell(gif: front, geometry: geometry)
+                                    if self.gifs.giffront != nil{
+                                        GifCell(gif: self.gifs.giffront!, geometry: geometry)
+                                    }
                                 }.listStyle(.plain)
                             })
-                        }
+                        //}
                         if !self.gifs.isEmpty{
                         Section(header: VStack(alignment: .leading, spacing: 8){
                             Text("Gifs Stack").font(.body).foregroundColor(.purple).fontWeight(.bold).padding(.leading)
@@ -70,7 +72,6 @@ struct ContentView: View {
                                 ForEach(self.gifs.gifs, id: \.id) { gif in
                                     GifCell(gif: gif, geometry: geometry)
                                         .onTapGesture {
-                                            //debugPrint(gif)
                                             self.gifs.enqueue(gif)
                                         }
                                 }
@@ -79,10 +80,7 @@ struct ContentView: View {
                     })
                     .task{
                         await gifs.loadGift()
-                        //await gifs.search(search: "love")
-                        //let searchId = self.gifs.gifs[0].id
-                        //await gifs.searchGifId(gifID: searchId!)
-                    }
+                        }
                     .refreshable {
                         await gifs.loadGift()
                     }
