@@ -22,11 +22,10 @@ struct ContentView: View {
    var body: some View {
       NavigationView{
          GeometryReader { geometry in
-            
             VStack(alignment: .leading, spacing: 0, content: {
-               // MARK: Stack
-               
+               // MARK: Queue
                HStack(){
+                  Text("count: \(self.gifs.count)").padding(.leading, 10)
                   Spacer()
                   Button(action: {
                      self.gifs.dequeue()
@@ -40,10 +39,8 @@ struct ContentView: View {
                }
                
                Section(header: VStack(alignment: .leading, spacing: 8){
-                  Text("Gifs Stack").font(.body).foregroundColor(.purple).fontWeight(.bold).padding(.leading)
+                  Text("Gifs Queue").font(.body).foregroundColor(.purple).fontWeight(.bold).padding(.leading)
                }, content: {
-                  Text("count: \(self.gifs.count)")
-                  
                   List{
                      ForEach(self.gifs.gifsStack, id: \.id) { gif in
                         GifCell(gif: gif, geometry: geometry)
@@ -73,8 +70,6 @@ struct ContentView: View {
                   await gifs.loadGift()
                }
          }//gio
-         
-         
          .hideNavigationBar()
       }//nav
       .edgesIgnoringSafeArea(.all)
