@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 import SwiftUI
-
+/*
 public struct Queue<T> {
    fileprivate var array = [T?]()
    fileprivate var head = 0
@@ -49,7 +49,7 @@ public struct Queue<T> {
       }
    }
 }
-
+*/
 // MARK: MainViewModel
 
 class MainViewModel: ObservableObject {
