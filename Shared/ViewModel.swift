@@ -55,7 +55,8 @@ public struct Queue<T> {
 class MainViewModel: ObservableObject {
     
     @Published private(set) var gifsStack = [GifCollectionViewCellViewModel]()
-    fileprivate var head = 0
+    @Published private(set) var giffront: GifCollectionViewCellViewModel?
+    private var head = 0
     
     @Published private(set) var gifs = [GifCollectionViewCellViewModel]()
     
@@ -76,21 +77,25 @@ class MainViewModel: ObservableObject {
         gifsStack.append(element)
     }
     public func dequeue() -> GifCollectionViewCellViewModel?{
-        let element = gifsStack[head]
+        
+        let element1 = gifsStack[head]
+        
         guard head < gifsStack.count else { return nil }
         
         gifsStack[head] = GifCollectionViewCellViewModel(id: nil, title: nil, rating: nil, Image: nil, url: nil)
-            head += 1
+        head += 1
+        
         //let percentage = Double(head)/Double(gifsStack.count)
         //if gifsStack.count > 50 && percentage > 0.25 {
+       
         if head > 2 {
             gifsStack.removeFirst(head)
             head = 0
         }
-        //debugPrint(element)
-        return element
+       
+        return element1
     }
-    public var front: GifCollectionViewCellViewModel? {
+    public var front1: GifCollectionViewCellViewModel? {
         if isEmpty {
               return nil
         } else {

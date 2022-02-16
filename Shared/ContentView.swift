@@ -22,15 +22,11 @@ struct ContentView: View {
     var body: some View {
         NavigationView{
                 GeometryReader { geometry in
-                    /*if let tit = self.gifs.gif?.title{
-                        NavigationLink(destination: VStack{Text("Detail View \(tit)")}, isActive: self.$gifs.gifDetail) {
-                            Text("").frame(width: 0, height: 0)
-                        }
-                    }*/
+                   
                     VStack(alignment: .leading, spacing: 0, content: {
                         // MARK: Stack
                         
-                        if let front = self.gifs.front{
+                        if let front = self.gifs.front1{
                             Section(header: VStack(alignment: .leading, spacing: 8){
                                 HStack(){
                                     Text("Gif Stack Top").font(.body).foregroundColor(.purple).fontWeight(.bold).padding(.leading)
